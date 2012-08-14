@@ -23,6 +23,10 @@ body
 	background-image: url('../images/background/green-3.jpg');
 }
 
+/*
+ * Menu
+ */
+
 .page .menu
 {
 	width: 100%;
@@ -60,3 +64,62 @@ body
 	color: #81B23C;
 	cursor: pointer;
 }
+
+/*
+ * Gallery
+ */
+
+#gallery
+{
+	width: 800px;
+	height: 800px;
+	background-color: black;
+	margin: 0 auto;
+}
+
+#slides {
+	width:720px;
+	height: 540px;
+	position:relative;
+}
+
+.slides_container {
+	width: 100%;
+	overflow:hidden;
+	position:relative;
+}
+
+/*
+	Each slide
+	Important:
+	Set the width of your slides
+	If height not specified height will be set by the slide content
+	Set to display block
+*/
+
+.slides_container div.slide {
+	width: 720px;
+	height: 720px;
+	display: block;
+	cursor: pointer;
+}
+
+
+/*
+	Next/prev buttons
+*/
+
+#slides .next,#slides .prev {
+	position: absolute;
+	top: 107px;
+	left: 12px;
+	width: 24px;
+	height: 43px;
+	display: block;
+	z-index: 101;
+}
+
+#slides .next {
+	left: 946px;
+}
+

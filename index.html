@@ -11,6 +11,10 @@
     	<!-- Fonts -->
     	<link href='http://fonts.googleapis.com/css?family=Princess+Sofia|Bad+Script|Gloria+Hallelujah&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     	
+    	<!-- SlidesJS -->
+    	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+		<script type="text/javascript" src="scripts/slidesjs/slides.min.jquery.js"></script>
+    	
     	<!-- Libs -->
     	<script type="text/javascript" src="scripts/js.class.js"></script>
     	<script type="text/javascript" src="scripts/jquery-1.7.2.min.js"></script>
@@ -27,17 +31,17 @@
 				
 				/** App **/
 				var app = new AR.App({
-					state: AR.App.States.HOME,
+					state: AR.App.States.GALLERY,
 					views: [
 						
 						/*
-						 * Home View
+						 * Gallery View
 						 */
-						new AR.HomeView({
-							container: AR.one("#home"),
+						new AR.GalleryView({
+							container: AR.one("#gallery"),
 							hideOnStates: [AR.App.States.MAP],
 							templates: {
-								main: $j.trim( AR.one("#home-tpl").innerHTML ),
+								main: $j.trim( AR.one("#gallery-tpl").innerHTML ),
 							}
 						}),
 						
@@ -46,7 +50,7 @@
 						 */
 						new AR.MapView({
 							container: AR.one("#map"),
-							hideOnStates: [AR.App.States.HOME],
+							hideOnStates: [AR.App.States.GALLERY],
 							templates: {
 								main: $j.trim( AR.one("#map-tpl").innerHTML ),
 							}	
@@ -55,10 +59,36 @@
 				});
 
 				app.start();
+				
+				loadGallery();
 			});
 			
 		})(jQuery.noConflict());
-			
+
+		function loadGallery()
+		{
+			$('#slides').slides({
+				generatePagination: false,
+				randomize: true,
+				hoverPause: true,
+				effect: 'slide, fade',
+				animationStart: function(current){
+					$('.caption').animate({
+						bottom: -50
+					},100);
+				},
+				animationComplete: function(current){
+					$('.caption').animate({
+						bottom:0
+					},200);
+				},
+				slidesLoaded: function() {
+					$('.caption').animate({
+						bottom:0
+					},200);
+				}
+			});
+		}
 	</script>	
     	
 	</head>
@@ -72,7 +102,7 @@
 				<div class="yui3-u menu-item">Gallery</div>
 			</div>
 			<div class="yui3-g content">
-				<div id="home"></div>
+				<div id="gallery"></div>
 				<div id="map"></div>
 			</div>
 		</div>
@@ -80,9 +110,19 @@
 		
 	<!-- Templates -->
 	
-	<!-- Home View -->
-	<script id="home-tpl" type="text/template">
-		<div>HOME</div>
+	<!-- Gallery View -->
+	<script id="gallery-tpl" type="text/template">
+		<div id="slides">
+			<div class="slides_container">
+				{{#pictures}}
+					<div class="slide">
+						<img src="{{url}}">
+					</div>
+				{{/pictures}}
+			</div>
+			<a href="#" class="prev"><img src="images/gallery/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+			<a href="#" class="next"><img src="images/gallery/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+		</div>
 	</script>
 	
 	<!-- Map View -->

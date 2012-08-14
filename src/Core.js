@@ -131,7 +131,7 @@
 	AR.App = AmazingRomaniaApp;
 	
 	AR.App.States = {};
-	AR.App.States.HOME = 'home';
+	AR.App.States.GALLERY = 'gallery';
 	AR.App.States.MAP = 'map';
 	
 }(AR));
