@@ -1,0 +1,94 @@
+<html>
+	
+	<title>Amazing Romania</title>
+	
+	<head>
+		<!-- Style -->
+		<link rel="stylesheet" type="text/css" href="style/main.css" />
+		<link rel="stylesheet" type="text/css" href="style/grids-min.css">
+    	<link rel="stylesheet" type="text/css" href="style/cssreset-min.css">
+    	
+    	<!-- Fonts -->
+    	<link href='http://fonts.googleapis.com/css?family=Princess+Sofia|Bad+Script|Gloria+Hallelujah&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    	
+    	<!-- Libs -->
+    	<script type="text/javascript" src="scripts/js.class.js"></script>
+    	<script type="text/javascript" src="scripts/jquery-1.7.2.min.js"></script>
+    	<script type="text/javascript" src="scripts/amazingromania.jquery.js"></script>
+    	<script type="text/javascript" src="scripts/mustache.js"></script>
+    	<script type="text/javascript" src="scripts/amazingromania.js"></script>
+    	
+	    <!-- Script -->
+		<script>
+	
+		(function( $j )
+		{
+			$j(document).ready( function(){
+				
+				/** App **/
+				var app = new AR.App({
+					state: AR.App.States.HOME,
+					views: [
+						
+						/*
+						 * Home View
+						 */
+						new AR.HomeView({
+							container: AR.one("#home"),
+							hideOnStates: [AR.App.States.MAP],
+							templates: {
+								main: $j.trim( AR.one("#home-tpl").innerHTML ),
+							}
+						}),
+						
+						/*
+						 * Map View
+						 */
+						new AR.MapView({
+							container: AR.one("#map"),
+							hideOnStates: [AR.App.States.HOME],
+							templates: {
+								main: $j.trim( AR.one("#map-tpl").innerHTML ),
+							}	
+						})
+					]
+				});
+
+				app.start();
+			});
+			
+		})(jQuery.noConflict());
+			
+	</script>	
+    	
+	</head>
+	<body>
+		
+		<div class="yui3-g page">
+			<div class="yui3-g menu">
+				<div class="yui3-u logo"></div>
+				<div class="yui3-u menu-item">Home</div>
+				<div class="yui3-u menu-item">Places</div>
+				<div class="yui3-u menu-item">Gallery</div>
+			</div>
+			<div class="yui3-g content">
+				<div id="home"></div>
+				<div id="map"></div>
+			</div>
+		</div>
+		
+		
+	<!-- Templates -->
+	
+	<!-- Home View -->
+	<script id="home-tpl" type="text/template">
+		<div>HOME</div>
+	</script>
+	
+	<!-- Map View -->
+	<script id="map-tpl" type="text/template">
+		<div>MAP</div>
+	</script>
+		
+	</body>
+</html>
