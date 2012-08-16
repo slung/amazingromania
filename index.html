@@ -122,25 +122,27 @@
 	
 	<!-- Menu View -->
 	<script id="menu-tpl" type="text/template">
-		<div class="yui3-u logo"></div>
-		<div class="yui3-u menu-item map">Map</div>
-		<div class="yui3-u menu-item places">Places</div>
-		<div class="yui3-u menu-item tours">Tours</div>
-		<div class="yui3-u menu-item contact">Contact</div>
+		<div id="home" class="menu-item yui3-u logo"></div>
+		<div id="map" class="menu-item yui3-u">Map</div>
+		<div id="places" class="menu-item yui3-u">Places</div>
+		<div id="tours" class="menu-item yui3-u">Tours</div>
+		<div id="contact" class="menu-item yui3-u">Contact</div>
 	</script>
 	
 	<!-- Gallery View -->
 	<script id="gallery-tpl" type="text/template">
-		<div id="slides">
-			<div class="slides_container">
-				{{#pictures}}
-					<div class="slide">
-						<img src="{{url}}">
-					</div>
-				{{/pictures}}
+		<div id="gallery-container">
+			<div id="slides">
+				<div class="slides_container">
+					{{#pictures}}
+						<div class="slide">
+							<img src="{{url}}">
+						</div>
+					{{/pictures}}
+				</div>
+				<a href="#" class="arrow prev"><img src="images/gallery/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+				<a href="#" class="arrow next"><img src="images/gallery/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
 			</div>
-			<a href="#" class="arrow prev"><img src="images/gallery/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
-			<a href="#" class="arrow next"><img src="images/gallery/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
 		</div>
 	</script>
 	

@@ -3,7 +3,9 @@
 	var MenuView = AR.View.extend({
 		
 		events: {
-			
+			".menu-item":{
+				click: "menuItemClick"
+			}
 		},
 		
 		init: function( cfg ) {
@@ -22,6 +24,15 @@
 			
 			return this;
 		},
+		
+		/*
+		 * Events
+		 */
+		
+		menuItemClick: function( evt )
+		{
+			var menuItem = evt.currentTarget.id;
+		}
 		
 	});
 	

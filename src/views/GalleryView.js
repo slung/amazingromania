@@ -6,7 +6,7 @@
 		count: 8, //number of pictures to display in gallery
 		
 		events: {
-			".slide":{
+			"#gallery-container":{
 				mouseenter: "onSlideMouseEnter",
 				mouseleave: "onSlideMouseLeave"
 			},

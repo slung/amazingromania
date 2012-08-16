@@ -43,11 +43,11 @@ body
 
 .page #menu .logo
 {
-	width: 171px;
-	height: 32px;
-	background-image: url('../images/logo.png');
-	cursor: pointer;
-	margin: 10px 100px 0px 20px;
+	width: 171px !important;
+	height: 32px !important;
+	background-image: url('../images/logo.png')  !important;
+	cursor: pointer !important;
+	margin: 10px 100px 0px 20px !important;
 }
 
 .page #menu .logo:hover
@@ -75,6 +75,12 @@ body
 	height: 640px;
 	background-color: black;
 	margin: 0 auto;
+}
+
+#gallery #gallery-container
+{
+	width: 100%;
+	height: 100%;
 }
 
 #slides {
@@ -151,7 +157,7 @@ body
 
 .pagination li.current a, .pagination li.current a:hover { background-position: 0 -13px }
 
-.pagination li a:hover { background-position: 0 -26px }
+.pagination li a:hover { background-position: 0 -13px }
 
 .arrow
 {
