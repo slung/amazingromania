@@ -4,7 +4,7 @@
 		
 		events: {
 			".menu-item":{
-				click: "menuItemClick"
+				click: "onMenuItemClick"
 			}
 		},
 		
@@ -29,7 +29,7 @@
 		 * Events
 		 */
 		
-		menuItemClick: function( evt )
+		onMenuItemClick: function( evt )
 		{
 			var menuItem = evt.currentTarget.id;
 		}
