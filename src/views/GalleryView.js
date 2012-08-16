@@ -3,10 +3,13 @@
 	var GalleryView = AR.View.extend({
 		
 		base: "images/albums/default/", //base directory for pictures
-		count: 5, //number of pictures to display in gallery
+		count: 8, //number of pictures to display in gallery
 		
 		events: {
-			
+			".slide":{
+				mouseenter: "onSlideMouseEnter",
+				mouseleave: "onSlideMouseLeave"
+			},
 		},
 		
 		init: function( cfg ) {
@@ -73,9 +76,31 @@
 			};
 			
 			return pictures;
-		}
+		},
+		
+		/*
+		 * Events
+		 */
+		
+		onSlideMouseEnter: function( evt )
+		{
+			var arrows = AR.all(".arrow");
+			
+			for (var i=0; i< arrows.length; i++)
+				AR.fadeToggle(arrows[i], "fast", "linear");
+		},
+		
+		onSlideMouseLeave: function( evt )
+		{
+			var arrows = AR.all(".arrow");
+			
+			for (var i=0; i< arrows.length; i++)
+				AR.fadeToggle(arrows[i], "fast", "linear");
+		},
 		
 	});
+	
+
 	
 	// Publish
 	AR.GalleryView = GalleryView;

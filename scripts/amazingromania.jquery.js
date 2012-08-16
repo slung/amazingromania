@@ -319,9 +319,14 @@ AR.scrollTop = function( container, parent, elementToScrollTo, offset )
 		 } );
 };
 
-AR.toggle = function ( selector, duration, callback )
+AR.toggle = function ( selector, duration, easing, callback )
 {
-	jQuery(selector).toggle( duration, callback );
+	jQuery(selector).toggle( duration, easing, callback );
+};
+
+AR.fadeToggle = function ( selector, duration, callback )
+{
+	jQuery(selector).fadeToggle( duration, callback );
 };
 
 AR.height = function ( selector, height )

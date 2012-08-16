@@ -33,6 +33,16 @@
 				var app = new AR.App({
 					state: AR.App.States.GALLERY,
 					views: [
+					
+						/*
+						 * Menu View
+						 */
+						new AR.GalleryView({
+							container: AR.one("#menu"),
+							templates: {
+								main: $j.trim( AR.one("#menu-tpl").innerHTML ),
+							}
+						}),
 						
 						/*
 						 * Gallery View
@@ -68,10 +78,15 @@
 		function loadGallery()
 		{
 			$('#slides').slides({
+				play: 3000,
 				generatePagination: false,
 				randomize: true,
 				hoverPause: true,
-				effect: 'slide, fade',
+				effect: 'fade',
+				generatePagination: true,
+				paginationClass: 'pagination',
+				currentClass: 'current',
+				bigTarget: true,
 				animationStart: function(current){
 					$('.caption').animate({
 						bottom: -50
@@ -95,12 +110,7 @@
 	<body>
 		
 		<div class="yui3-g page">
-			<div class="yui3-g menu">
-				<div class="yui3-u logo"></div>
-				<div class="yui3-u menu-item">Home</div>
-				<div class="yui3-u menu-item">Places</div>
-				<div class="yui3-u menu-item">Gallery</div>
-			</div>
+			<div id="menu" class="yui3-g"></div>
 			<div class="yui3-g content">
 				<div id="gallery"></div>
 				<div id="map"></div>
@@ -109,6 +119,15 @@
 		
 		
 	<!-- Templates -->
+	
+	<!-- Menu View -->
+	<script id="menu-tpl" type="text/template">
+		<div class="yui3-u logo"></div>
+		<div class="yui3-u menu-item map">Map</div>
+		<div class="yui3-u menu-item places">Places</div>
+		<div class="yui3-u menu-item tours">Tours</div>
+		<div class="yui3-u menu-item contact">Contact</div>
+	</script>
 	
 	<!-- Gallery View -->
 	<script id="gallery-tpl" type="text/template">
@@ -120,8 +139,8 @@
 					</div>
 				{{/pictures}}
 			</div>
-			<a href="#" class="prev"><img src="images/gallery/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
-			<a href="#" class="next"><img src="images/gallery/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+			<a href="#" class="arrow prev"><img src="images/gallery/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+			<a href="#" class="arrow next"><img src="images/gallery/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
 		</div>
 	</script>
 	

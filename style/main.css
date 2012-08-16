@@ -27,7 +27,7 @@ body
  * Menu
  */
 
-.page .menu
+.page #menu
 {
 	width: 100%;
 	height: 50px;
@@ -41,28 +41,28 @@ body
     -webkit-border-radius: 0px 0px 10px 10px;
 }
 
-.page .menu .logo
+.page #menu .logo
 {
 	width: 171px;
 	height: 32px;
 	background-image: url('../images/logo.png');
-	margin-right: 100px;
-	margin-left: 20px;
-	cursor: pointer
+	cursor: pointer;
+	margin: 10px 100px 0px 20px;
 }
 
-.page .menu .logo:hover
+.page #menu .logo:hover
 {
 	background-position: 0 -32px;
 }
 
-.page .menu .menu-item
+.page #menu .menu-item
 {
 	margin-right: 40px;
 	font-family: 'Bad Script', cursive;
 	font-size: 18px;
 	color: #81B23C;
 	cursor: pointer;
+	margin-top: 8px;
 }
 
 /*
@@ -71,8 +71,8 @@ body
 
 #gallery
 {
-	width: 800px;
-	height: 800px;
+	width: 900px;
+	height: 640px;
 	background-color: black;
 	margin: 0 auto;
 }
@@ -81,6 +81,7 @@ body
 	width:720px;
 	height: 540px;
 	position:relative;
+	margin: 0 auto;
 }
 
 .slides_container {
@@ -99,9 +100,10 @@ body
 
 .slides_container div.slide {
 	width: 720px;
-	height: 720px;
+	height: 540px;
 	display: block;
 	cursor: pointer;
+	margin-top: 50px;
 }
 
 
@@ -111,15 +113,48 @@ body
 
 #slides .next,#slides .prev {
 	position: absolute;
-	top: 107px;
-	left: 12px;
+	top: 288px;
+	left: -61px;
 	width: 24px;
 	height: 43px;
 	display: block;
 	z-index: 101;
+	display: none;
 }
 
 #slides .next {
-	left: 946px;
+	left: 762px;
+	display: none;
+}
+
+.pagination {
+    position: absolute;
+    right: 310px;
+    bottom: -150px;
+}
+
+.pagination li {
+    float: left;
+    margin: 0 1px;
+}
+
+.pagination li a {
+    display: block;
+    width: 13px;
+    height: 0;
+    padding-top: 13px;
+    background-image: url('../images/gallery/pagination.png');
+    background-position: 0 0;
+    float: left;
+    overflow: hidden;
+}
+
+.pagination li.current a, .pagination li.current a:hover { background-position: 0 -13px }
+
+.pagination li a:hover { background-position: 0 -26px }
+
+.arrow
+{
+	display: none;
 }
 
