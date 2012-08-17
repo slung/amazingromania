@@ -32,6 +32,54 @@
 		onMenuItemClick: function( evt )
 		{
 			var menuItem = evt.currentTarget.id;
+			
+			switch ( menuItem )
+			{
+				case "home":
+				{
+					this.sendMessage("changeState", {
+						state: AR.App.States.GALLERY
+					});
+					
+					break;
+				}
+				
+				case "map":
+				{
+					this.sendMessage("changeState", {
+						state: AR.App.States.MAP
+					});
+					
+					break;
+				}
+				
+				case "places":
+				{
+					this.sendMessage("changeState", {
+						state: AR.App.States.PLACES
+					});
+					
+					break;
+				}
+				
+				case "tours":
+				{
+					this.sendMessage("changeState", {
+						state: AR.App.States.TOURS
+					});
+					
+					break;
+				}
+				
+				case "contact":
+				{
+					this.sendMessage("changeState", {
+						state: AR.App.States.CONTACT
+					});
+					
+					break;
+				}
+			}
 		}
 		
 	});

@@ -3,6 +3,9 @@
 	<title>Amazing Romania</title>
 	
 	<head>
+		<!-- Icon -->
+		<link rel="Amazing Romania" href="images/favicon.ico" /> 
+		
 		<!-- Style -->
 		<link rel="stylesheet" type="text/css" href="style/main.css" />
 		<link rel="stylesheet" type="text/css" href="style/grids-min.css">
@@ -10,6 +13,9 @@
     	
     	<!-- Fonts -->
     	<link href='http://fonts.googleapis.com/css?family=Princess+Sofia|Bad+Script|Gloria+Hallelujah&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    	
+    	<!-- Google Maps -->
+    	<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.3&sensor=false&language=en"></script>
     	
     	<!-- SlidesJS -->
     	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
@@ -37,7 +43,7 @@
 						/*
 						 * Menu View
 						 */
-						new AR.GalleryView({
+						new AR.MenuView({
 							container: AR.one("#menu"),
 							templates: {
 								main: $j.trim( AR.one("#menu-tpl").innerHTML ),
@@ -49,7 +55,7 @@
 						 */
 						new AR.GalleryView({
 							container: AR.one("#gallery"),
-							hideOnStates: [AR.App.States.MAP],
+							hideOnStates: [AR.App.States.MAP, AR.App.States.PLACES, AR.App.States.TOURS, AR.App.States.CONTACT],
 							templates: {
 								main: $j.trim( AR.one("#gallery-tpl").innerHTML ),
 							}
@@ -60,9 +66,8 @@
 						 */
 						new AR.MapView({
 							container: AR.one("#map"),
-							hideOnStates: [AR.App.States.GALLERY],
+							hideOnStates: [AR.App.States.GALLERY, AR.App.States.PLACES, AR.App.States.TOURS, AR.App.States.CONTACT],
 							templates: {
-								main: $j.trim( AR.one("#map-tpl").innerHTML ),
 							}	
 						})
 					]
@@ -81,7 +86,7 @@
 				play: 3000,
 				generatePagination: false,
 				randomize: true,
-				hoverPause: true,
+				//hoverPause: true,
 				effect: 'fade',
 				generatePagination: true,
 				paginationClass: 'pagination',
@@ -109,9 +114,10 @@
 	</head>
 	<body>
 		
-		<div class="yui3-g page">
-			<div id="menu" class="yui3-g"></div>
-			<div class="yui3-g content">
+		<div class="page">
+			<div id="menu""></div>
+			<a class="social" href="http://www.facebook.com/amazingromania" target="_blank" title="Amazing Romania on Facebook"></a>
+			<div class="content">
 				<div id="gallery"></div>
 				<div id="map"></div>
 			</div>
@@ -122,11 +128,13 @@
 	
 	<!-- Menu View -->
 	<script id="menu-tpl" type="text/template">
-		<div id="home" class="menu-item yui3-u logo"></div>
-		<div id="map" class="menu-item yui3-u">Map</div>
-		<div id="places" class="menu-item yui3-u">Places</div>
-		<div id="tours" class="menu-item yui3-u">Tours</div>
-		<div id="contact" class="menu-item yui3-u">Contact</div>
+		<div class="menu-container">
+			<div id="home" class="menu-item yui3-u logo"></div>
+			<div id="map" class="menu-item yui3-u"></div>
+			<div id="places" class="menu-item yui3-u"></div>
+			<div id="tours" class="menu-item yui3-u"></div>
+			<div id="contact" class="menu-item yui3-u"></div>
+		</div>
 	</script>
 	
 	<!-- Gallery View -->
@@ -146,10 +154,5 @@
 		</div>
 	</script>
 	
-	<!-- Map View -->
-	<script id="map-tpl" type="text/template">
-		<div>MAP</div>
-	</script>
-		
 	</body>
 </html>

@@ -306,6 +306,8 @@
 {
 	var MapView = AR.View.extend({
 		
+		map: null,
+		
 		events: {
 			
 		},
@@ -318,14 +320,101 @@
 		
 		register: function()
 		{
+			this.onMessage("showView", this.onShowView);
 		},
 		
 		render: function()
 		{
-			this.container.innerHTML = this.mustache( this.templates.main, {});
+			var mapOptions = 
+			{
+				zoom: 7,
+				center: new google.maps.LatLng(48.5, 20),
+				mapTypeId: google.maps.MapTypeId.HYBRID,
+				mapTypeControl: true,
+			    mapTypeControlOptions: {
+			        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+			        position: google.maps.ControlPosition.TOP_RIGHT
+			    },
+			    panControl: true,
+			    zoomControl: true,
+			    zoomControlOptions: {
+			        style: google.maps.ZoomControlStyle.LARGE
+			    },
+			}
+			
+			this.map = new google.maps.Map( this.container, mapOptions );
 			
 			return this;
 		},
+		
+		/*
+		 * Draws a region on Google Map
+		 * The region param represents an array og LatLng objects defining the polygon
+		 */
+		drawRegion: function( region )
+		{
+			var transylvaniaCoords = [
+				new google.maps.LatLng(45.54, 22.53),
+				new google.maps.LatLng(45.08, 23.52),
+				new google.maps.LatLng(45.16, 25.02),
+				new google.maps.LatLng(45.21, 25.33),
+				new google.maps.LatLng(45.51, 25.47),
+				new google.maps.LatLng(46.21, 25.48),
+				new google.maps.LatLng(46.55, 25.21),
+				new google.maps.LatLng(47.16, 24.24),
+				new google.maps.LatLng(47.20, 22.49),
+				new google.maps.LatLng(46.28, 22.45)
+			];
+			
+			var regionCenter = new google.maps.LatLng(46.16, 24.13);
+			var regionRadius = 150000;
+			
+			this.transylvaniaRegion = new google.maps.Circle({
+				center: regionCenter,
+				radius: regionRadius,
+				strokeColor: "#81B23C",
+			    strokeOpacity: 0.8,
+			    strokeWeight: 2,
+			    fillColor: "#81B23C",
+			    fillOpacity: 0.2	
+			});
+			
+			 // this.transylvaniaRegion = new google.maps.Polygon({
+				// paths: transylvaniaCoords,
+				// strokeColor: "#81B23C",
+			    // strokeOpacity: 0.8,
+			    // strokeWeight: 2,
+			    // fillColor: "#81B23C",
+			    // fillOpacity: 0.2	
+			// });
+			
+			this.transylvaniaRegion.setMap(this.map);
+			
+			google.maps.event.addListener(this.transylvaniaRegion, 'mouseover', AR.bind(function(){
+				this.transylvaniaRegion.strokeWeight = 5;
+				this.transylvaniaRegion.setMap(this.map);
+			}, this));
+			
+			google.maps.event.addListener(this.transylvaniaRegion, 'mouseout', AR.bind(function(){
+				this.transylvaniaRegion.strokeWeight = 2;
+				this.transylvaniaRegion.setMap(this.map);
+			}, this));
+			
+		},
+		
+		/*
+		 * Messages
+		 */
+		
+		onShowView: function( msg )
+		{
+			if ( msg.id != this.container.id)
+				return;
+				
+			google.maps.event.trigger(this.map, "resize");
+			
+			this.drawRegion();
+		}
 		
 	});
 	
@@ -368,6 +457,54 @@
 		onMenuItemClick: function( evt )
 		{
 			var menuItem = evt.currentTarget.id;
+			
+			switch ( menuItem )
+			{
+				case "home":
+				{
+					this.sendMessage("changeState", {
+						state: AR.App.States.GALLERY
+					});
+					
+					break;
+				}
+				
+				case "map":
+				{
+					this.sendMessage("changeState", {
+						state: AR.App.States.MAP
+					});
+					
+					break;
+				}
+				
+				case "places":
+				{
+					this.sendMessage("changeState", {
+						state: AR.App.States.PLACES
+					});
+					
+					break;
+				}
+				
+				case "tours":
+				{
+					this.sendMessage("changeState", {
+						state: AR.App.States.TOURS
+					});
+					
+					break;
+				}
+				
+				case "contact":
+				{
+					this.sendMessage("changeState", {
+						state: AR.App.States.CONTACT
+					});
+					
+					break;
+				}
+			}
 		}
 		
 	});
@@ -512,6 +649,9 @@
 	AR.App.States = {};
 	AR.App.States.GALLERY = 'gallery';
 	AR.App.States.MAP = 'map';
+	AR.App.States.PLACES = 'places';
+	AR.App.States.TOURS = 'tours';
+	AR.App.States.CONTACT = 'contact';
 	
 }(AR));
 

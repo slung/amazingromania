@@ -133,5 +133,8 @@
 	AR.App.States = {};
 	AR.App.States.GALLERY = 'gallery';
 	AR.App.States.MAP = 'map';
+	AR.App.States.PLACES = 'places';
+	AR.App.States.TOURS = 'tours';
+	AR.App.States.CONTACT = 'contact';
 	
 }(AR));
