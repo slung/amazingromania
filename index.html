@@ -4,7 +4,7 @@
 	
 	<head>
 		<!-- Icon -->
-		<link rel="Amazing Romania" href="images/favicon.ico" /> 
+		<link rel="icon" href="images/favicon.ico" /> 
 		
 		<!-- Style -->
 		<link rel="stylesheet" type="text/css" href="style/main.css" />
@@ -27,6 +27,7 @@
     	<script type="text/javascript" src="scripts/amazingromania.jquery.js"></script>
     	<script type="text/javascript" src="scripts/mustache.js"></script>
     	<script type="text/javascript" src="scripts/amazingromania.js"></script>
+    	<script type="text/javascript" src="scripts/slidescfg.js"></script>
     	
 	    <!-- Script -->
 		<script>
@@ -51,13 +52,18 @@
 						}),
 						
 						/*
-						 * Gallery View
+						 * Banner
 						 */
 						new AR.GalleryView({
-							container: AR.one("#gallery"),
+							base: "images/banner/",
+							count: 15,
+							prefix: "slide",
+							extension: "png",
+							startIndex: 1,
+							container: AR.one("#banner"),
 							hideOnStates: [AR.App.States.MAP, AR.App.States.PLACES, AR.App.States.TOURS, AR.App.States.CONTACT],
 							templates: {
-								main: $j.trim( AR.one("#gallery-tpl").innerHTML ),
+								main: $j.trim( AR.one("#banner-tpl").innerHTML ),
 							}
 						}),
 						
@@ -75,40 +81,13 @@
 
 				app.start();
 				
-				loadGallery();
+				loadBanner();
+				
+				//loadGallery();
 			});
 			
 		})(jQuery.noConflict());
-
-		function loadGallery()
-		{
-			$('#slides').slides({
-				play: 3000,
-				generatePagination: false,
-				randomize: true,
-				//hoverPause: true,
-				effect: 'fade',
-				generatePagination: true,
-				paginationClass: 'pagination',
-				currentClass: 'current',
-				bigTarget: true,
-				animationStart: function(current){
-					$('.caption').animate({
-						bottom: -50
-					},100);
-				},
-				animationComplete: function(current){
-					$('.caption').animate({
-						bottom:0
-					},200);
-				},
-				slidesLoaded: function() {
-					$('.caption').animate({
-						bottom:0
-					},200);
-				}
-			});
-		}
+		
 	</script>	
     	
 	</head>
@@ -118,8 +97,42 @@
 			<div id="menu""></div>
 			<a class="social" href="http://www.facebook.com/amazingromania" target="_blank" title="Amazing Romania on Facebook"></a>
 			<div class="content">
-				<div id="gallery"></div>
+				
+				<div id="banner"></div>
+				<div class="inner">
+					
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+					<p>sdfsdfsdfsdf</p>
+				</div>
+				<!-- <div id="gallery"></div> -->
 				<div id="map"></div>
+			</div>
+			<div class="footer">
+				<div class="inner">
+					<p>&copy;Amazing Romania</p>
+				</div>
 			</div>
 		</div>
 		
@@ -134,6 +147,19 @@
 			<div id="places" class="menu-item yui3-u"></div>
 			<div id="tours" class="menu-item yui3-u"></div>
 			<div id="contact" class="menu-item yui3-u"></div>
+		</div>
+	</script>
+	
+	<!-- Banner -->
+	<script id="banner-tpl" type="text/template">
+		<div id="slides">
+			<div class="slides_container">
+				{{#pictures}}
+					<div class="slide">
+						<img src="{{url}}">
+					</div>
+				{{/pictures}}
+			</div>
 		</div>
 	</script>
 	

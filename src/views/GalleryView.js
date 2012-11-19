@@ -4,6 +4,9 @@
 		
 		base: "images/albums/default/", //base directory for pictures
 		count: 8, //number of pictures to display in gallery
+		prefix: "",
+		extension: "jpg",
+		startIndex: 0,
 		
 		events: {
 			"#gallery-container":{
@@ -16,6 +19,9 @@
 			
 			this.base = cfg.base || this.base;
 			this.count = cfg.count || this.count;
+			this.prefix = cfg.prefix || this.prefix;
+			this.extension = cfg.extension || this.extension;
+			this.startIndex = cfg.startIndex || this.startIndex;
 			
 			// Call super
 			this._parent( cfg );
@@ -69,9 +75,9 @@
 		{
 			var pictures = [];
 			
-			for (var i=0; i < this.count; i++) {
+			for (var i = this.startIndex; i < this.count; i++) {
 			  pictures.push({
-			  	url: this.base + i + ".jpg"
+			  	url: this.base + this.prefix + i + "." + this.extension
 			  })
 			};
 			
@@ -86,6 +92,9 @@
 		{
 			var arrows = AR.all(".arrow");
 			
+			if (!arrows)
+				return;
+			
 			for (var i=0; i< arrows.length; i++)
 				AR.fadeToggle(arrows[i], "fast", "linear");
 		},
@@ -93,6 +102,9 @@
 		onSlideMouseLeave: function( evt )
 		{
 			var arrows = AR.all(".arrow");
+			
+			if (!arrows)
+				return;
 			
 			for (var i=0; i< arrows.length; i++)
 				AR.fadeToggle(arrows[i], "fast", "linear");

@@ -199,6 +199,9 @@
 		
 		base: "images/albums/default/", //base directory for pictures
 		count: 8, //number of pictures to display in gallery
+		prefix: "",
+		extension: "jpg",
+		startIndex: 0,
 		
 		events: {
 			"#gallery-container":{
@@ -211,6 +214,9 @@
 			
 			this.base = cfg.base || this.base;
 			this.count = cfg.count || this.count;
+			this.prefix = cfg.prefix || this.prefix;
+			this.extension = cfg.extension || this.extension;
+			this.startIndex = cfg.startIndex || this.startIndex;
 			
 			// Call super
 			this._parent( cfg );
@@ -264,9 +270,9 @@
 		{
 			var pictures = [];
 			
-			for (var i=0; i < this.count; i++) {
+			for (var i = this.startIndex; i < this.count; i++) {
 			  pictures.push({
-			  	url: this.base + i + ".jpg"
+			  	url: this.base + this.prefix + i + "." + this.extension
 			  })
 			};
 			
@@ -281,6 +287,9 @@
 		{
 			var arrows = AR.all(".arrow");
 			
+			if (!arrows)
+				return;
+			
 			for (var i=0; i< arrows.length; i++)
 				AR.fadeToggle(arrows[i], "fast", "linear");
 		},
@@ -288,6 +297,9 @@
 		onSlideMouseLeave: function( evt )
 		{
 			var arrows = AR.all(".arrow");
+			
+			if (!arrows)
+				return;
 			
 			for (var i=0; i< arrows.length; i++)
 				AR.fadeToggle(arrows[i], "fast", "linear");
@@ -353,19 +365,6 @@
 		 */
 		drawRegion: function( region )
 		{
-			var transylvaniaCoords = [
-				new google.maps.LatLng(45.54, 22.53),
-				new google.maps.LatLng(45.08, 23.52),
-				new google.maps.LatLng(45.16, 25.02),
-				new google.maps.LatLng(45.21, 25.33),
-				new google.maps.LatLng(45.51, 25.47),
-				new google.maps.LatLng(46.21, 25.48),
-				new google.maps.LatLng(46.55, 25.21),
-				new google.maps.LatLng(47.16, 24.24),
-				new google.maps.LatLng(47.20, 22.49),
-				new google.maps.LatLng(46.28, 22.45)
-			];
-			
 			var regionCenter = new google.maps.LatLng(46.16, 24.13);
 			var regionRadius = 150000;
 			
@@ -378,15 +377,6 @@
 			    fillColor: "#81B23C",
 			    fillOpacity: 0.2	
 			});
-			
-			 // this.transylvaniaRegion = new google.maps.Polygon({
-				// paths: transylvaniaCoords,
-				// strokeColor: "#81B23C",
-			    // strokeOpacity: 0.8,
-			    // strokeWeight: 2,
-			    // fillColor: "#81B23C",
-			    // fillOpacity: 0.2	
-			// });
 			
 			this.transylvaniaRegion.setMap(this.map);
 			
