@@ -7,7 +7,7 @@ body
 	height: auto !important;
 	height: 100%;
 	position: relative;
-	background: transparent url('../images/background/bg.jpg') repeat;
+	background: transparent url('../images/background/brown-3.jpg') repeat;
 	overflow: hidden;
 }
 
@@ -37,7 +37,7 @@ body
 .page .content .inner
 {
 	position: absolute;
-	top: 310px;
+	top: 239px;
 	bottom: 40px;
 	width: 100%;
 	background: black;
@@ -51,8 +51,8 @@ body
 {
 	font-family: "Kristen";
 	font-size: 11px;
-	background-color: #81B23C;
-	color: black;
+	background-color: black;
+	color: white;
 	padding: 7px 0;
 }
 
@@ -96,35 +96,46 @@ body
 
 #story
 {
-	width: 800px;
-	height: 50px;
-	padding: 15px;
-	
+	text-align: center;
 	color: white;
-	border-bottom: 1px solid white;
 	
 	margin: 10px auto;
-	opacity: 0.6;
 	cursor: pointer;
 	
 	font-family: "Kristen";
 }
 
-#story:hover
-{
-	opacity: 1;
-}
 
 #story .title
 {
 	font-weight: bold;
-	font-size: 30px;
+	font-size: 20px;
 }
 
-#story .content
+#story .image-container img
 {
-	font-weight: normal;
-	font-size: 14px;
+	height: 100%;
+	filter: grayscale(0%);
+	-webkit-filter: grayscale(0%);
+	-moz-filter: grayscale(0%);
+	-ms-filter: grayscale(0%);
+	-o-filter: grayscale(0%);
+}
+
+#story .image-container img:hover
+{
+	filter: grayscale(100%);
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+}
+
+#story .image-container
+{
+	width: 300px;
+	height: 250px;
+	margin-left: 70px;
 }
 
 /*
@@ -135,7 +146,7 @@ body
 .page .content #banner
 {
 	width: 100%;
-	height: 250px;
+	height: 180px;
 	position: absolute;
 	top: 55px;
 	padding: 0 30px;
@@ -144,7 +155,7 @@ body
 
 #banner #slides {
 	width: 957px;
-	height: 250px;
+	height: 180px;
 	position: relative;
 	margin: 0 auto;
 }
@@ -157,8 +168,13 @@ body
 
 #banner .slides_container div.slide {
 	width: 957px;
-	height: 250px;
+	height: 180px;
 	display: block;
+}
+
+#banner .slides_container .slide img
+{
+	height: 100%;
 }
 
 /*
